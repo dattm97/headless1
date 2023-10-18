@@ -85,14 +85,13 @@ const App = () => {
   const usingHermes =
     typeof HermesInternal === 'object' && HermesInternal !== null;
 
-  let playing = BackgroundJob.isRunning();
+  let isRunning = BackgroundJob.isRunning();
 
   /**
    * Toggles the background task
    */
   const toggleBackground = async () => {
-    playing = !playing;
-    if (playing) {
+    if (!isRunning) {
       try {
         console.log('Trying to start background service');
         await BackgroundJob.start(taskRandom, options);
